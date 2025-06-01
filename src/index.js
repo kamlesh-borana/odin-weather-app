@@ -1,6 +1,7 @@
 import "./styles/main.css";
 import { getWeatherInfoUrl } from "./utils/constants";
 import { transformWeatherData } from "./utils/helpers";
+import { renderWeatherUI } from "./components/weather";
 // import weatherInfo from "./utils/weatherData.json";
 
 async function getWeatherInfo(location) {
@@ -29,4 +30,6 @@ weatherForm.addEventListener("submit", async (event) => {
   const weatherInfo = await getWeatherInfo(locationInput.value);
   const transformedWeatherData = transformWeatherData(weatherInfo);
   console.log(transformedWeatherData);
+
+  renderWeatherUI(transformedWeatherData);
 });
