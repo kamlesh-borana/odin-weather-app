@@ -178,8 +178,13 @@ async function createCurrentConditionsGIF(currentConditionsData) {
 }
 
 export async function renderWeatherUI(weatherData) {
-  const weatherContentContainer = document.createElement("div");
-  weatherContentContainer.classList.add("content-container");
+  let weatherContentContainer = document.querySelector(".content-container");
+  if (weatherContentContainer) {
+    weatherContentContainer.innerHTML = "";
+  } else {
+    weatherContentContainer = document.createElement("div");
+    weatherContentContainer.classList.add("content-container");
+  }
 
   const locationInfoDiv = createLocationInfoUI(weatherData.address);
   const generalWeatherDescriptionDiv = createGeneralWeatherDescriptionUI(
