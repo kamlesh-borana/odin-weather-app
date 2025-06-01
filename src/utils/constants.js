@@ -1,3 +1,5 @@
+export const CONTENT_CONTAINER_CLASS_NAME = "content-container";
+
 export const GIPHY_API_Key = "RdJHwNW1Gzn5ILbwwCN7zQbCxU1krEDT";
 
 export const GIPHY_SEARCH_URL = "https://api.giphy.com/v1/gifs/translate";

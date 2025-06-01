@@ -117,3 +117,12 @@ form#weatherForm button {
 .current-conditions-info-container div span {
   font-size: 32px;
 }
+
+.loader-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.loader-container p {
+  font-size: 18px;
+}

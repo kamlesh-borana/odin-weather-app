@@ -1,7 +1,11 @@
 import "./styles/main.css";
-import { getWeatherInfoUrl } from "./utils/constants";
+import {
+  CONTENT_CONTAINER_CLASS_NAME,
+  getWeatherInfoUrl,
+} from "./utils/constants";
 import { transformWeatherData } from "./utils/helpers";
 import { renderWeatherUI } from "./components/weather";
+import { renderLoader } from "./components/loader";
 // import weatherInfo from "./utils/weatherData.json";
 
 async function getWeatherInfo(location) {
@@ -23,13 +27,21 @@ async function getWeatherInfo(location) {
 
 const weatherForm = document.querySelector("#weatherForm");
 const locationInput = document.querySelector("#locationInput");
+const contentContainer = document.querySelector(
+  `.${CONTENT_CONTAINER_CLASS_NAME}`
+);
 
 weatherForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  contentContainer.innerHTML = "";
+  document.body.style.background = "none";
+
+  renderLoader(contentContainer);
 
   const weatherInfo = await getWeatherInfo(locationInput.value);
   const transformedWeatherData = transformWeatherData(weatherInfo);
   console.log(transformedWeatherData);
 
-  renderWeatherUI(transformedWeatherData);
+  renderWeatherUI(transformedWeatherData, contentContainer);
 });

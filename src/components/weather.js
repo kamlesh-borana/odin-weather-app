@@ -6,6 +6,7 @@ import dewSVG from "../assets/svg/dew.svg";
 import windSpeedSVG from "../assets/svg/wind-speed.svg";
 import precipitationProbabilitySVG from "../assets/svg/precipitation.svg";
 import { getGiphySearchUrl } from "../utils/constants";
+import { removeLoader } from "./loader";
 
 function createLocationInfoUI(locationData) {
   const locationInfoDiv = document.createElement("div");
@@ -177,15 +178,7 @@ async function createCurrentConditionsGIF(currentConditionsData) {
   //   return gifImage;
 }
 
-export async function renderWeatherUI(weatherData) {
-  let weatherContentContainer = document.querySelector(".content-container");
-  if (weatherContentContainer) {
-    weatherContentContainer.innerHTML = "";
-  } else {
-    weatherContentContainer = document.createElement("div");
-    weatherContentContainer.classList.add("content-container");
-  }
-
+export async function renderWeatherUI(weatherData, container) {
   const locationInfoDiv = createLocationInfoUI(weatherData.address);
   const generalWeatherDescriptionDiv = createGeneralWeatherDescriptionUI(
     weatherData.description
@@ -202,13 +195,13 @@ export async function renderWeatherUI(weatherData) {
   //   );
   await createCurrentConditionsGIF(weatherData.currentConditions);
 
-  weatherContentContainer.append(
+  removeLoader(container);
+
+  container.append(
     locationInfoDiv,
     generalWeatherDescriptionDiv,
     currentConditionsDiv,
     currentConditionsInfoDiv
     // currentConditionGIF
   );
-
-  document.body.append(weatherContentContainer);
 }
