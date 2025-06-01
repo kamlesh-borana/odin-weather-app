@@ -1,10 +1,10 @@
-// export const GIPHY_API_Key = "RdJHwNW1Gzn5ILbwwCN7zQbCxU1krEDT";
+export const GIPHY_API_Key = "RdJHwNW1Gzn5ILbwwCN7zQbCxU1krEDT";
 
-// export const GIPHY_SEARCH_URL = "https://api.giphy.com/v1/gifs/translate";
+export const GIPHY_SEARCH_URL = "https://api.giphy.com/v1/gifs/translate";
 
-// export const getGiphySearchUrl = (query) => {
-//   return `${GIPHY_SEARCH_URL}?api_key=${GIPHY_API_Key}&s=${query}`;
-// };
+export const getGiphySearchUrl = (query) => {
+  return `${GIPHY_SEARCH_URL}?api_key=${GIPHY_API_Key}&s=${query}`;
+};
 
 export const WEATHER_API_KEY = "ZYEDFW4V9MSFSMQ6QAGETX9NQ";
 
