@@ -8,8 +8,8 @@ import { renderWeatherUI } from "./components/weather";
 import { renderLoader } from "./components/loader";
 // import weatherInfo from "./utils/weatherData.json";
 
-async function getWeatherInfo(location) {
-  const response = await fetch(getWeatherInfoUrl(location));
+async function getWeatherInfo(location, unitGroup) {
+  const response = await fetch(getWeatherInfoUrl(location, unitGroup));
   const weatherInfo = await response.json();
   console.log(weatherInfo);
 
@@ -27,21 +27,39 @@ async function getWeatherInfo(location) {
 
 const weatherForm = document.querySelector("#weatherForm");
 const locationInput = document.querySelector("#locationInput");
+const unitGroupSelection = document.querySelector(
+  ".measurement-unit-container select"
+);
 const contentContainer = document.querySelector(
   `.${CONTENT_CONTAINER_CLASS_NAME}`
 );
 
-weatherForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
+async function handleWeatherUI() {
   contentContainer.innerHTML = "";
   document.body.style.background = "none";
 
   renderLoader(contentContainer);
 
-  const weatherInfo = await getWeatherInfo(locationInput.value);
+  const weatherInfo = await getWeatherInfo(
+    locationInput.value,
+    unitGroupSelection.value
+  );
   const transformedWeatherData = transformWeatherData(weatherInfo);
   console.log(transformedWeatherData);
 
   renderWeatherUI(transformedWeatherData, contentContainer);
+}
+
+weatherForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  handleWeatherUI();
+});
+
+unitGroupSelection.addEventListener("change", (event) => {
+  if (!locationInput.value) {
+    return;
+  }
+
+  handleWeatherUI();
 });

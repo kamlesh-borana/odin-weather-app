@@ -126,3 +126,21 @@ form#weatherForm button {
 .loader-container p {
   font-size: 18px;
 }
+
+.measurement-unit-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 24px;
+}
+
+.measurement-unit-container p {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.measurement-unit-container select {
+  font-size: 16px;
+  padding: 6px;
+}

@@ -13,8 +13,8 @@ export const WEATHER_API_KEY = "ZYEDFW4V9MSFSMQ6QAGETX9NQ";
 export const WEATHER_INFO_URL =
   "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
 
-export const getWeatherInfoUrl = (location) => {
-  return `${WEATHER_INFO_URL}${location}?key=${WEATHER_API_KEY}`;
+export const getWeatherInfoUrl = (location, unitGroup) => {
+  return `${WEATHER_INFO_URL}${location}?key=${WEATHER_API_KEY}&unitGroup=${unitGroup}`;
 };
 
 export const WEATHER_DATA_POINTS_LIST = [
